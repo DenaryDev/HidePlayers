@@ -72,7 +72,6 @@ tasks {
     }
 
     jar {
-        archiveClassifier.set("dev")
         include("LICENSE")
     }
 
