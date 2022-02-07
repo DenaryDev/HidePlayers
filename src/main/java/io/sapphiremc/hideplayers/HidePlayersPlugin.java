@@ -18,6 +18,7 @@ import io.sapphiremc.hideplayers.placeholders.HidePlayersExpansion;
 import io.sapphiremc.hideplayers.players.HidePlayersManager;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -106,7 +107,7 @@ public class HidePlayersPlugin extends JavaPlugin {
         hidePlayersManager.reload(usercache);
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            if (configuration.getBoolean("item.enabled") && configuration.getBoolean("item.settings.triggers.join")) {
+            if (itemAllowed(player.getWorld())) {
                 player.getInventory().setItem(configuration.getInt("item.slot") - 1, hidePlayersManager.getItem(player));
             }
         }
@@ -124,6 +125,11 @@ public class HidePlayersPlugin extends JavaPlugin {
         if (hidePlayersManager != null)
             hidePlayersManager.disable();
         logDebug("Disabling complete");
+    }
+
+    public boolean itemAllowed(World world) {
+        if (!configuration.getBoolean("item.enable")) return false;
+        else return !configuration.getStringList("item.disabled-worlds").contains(world.getName());
     }
 
     public void log(String s) {

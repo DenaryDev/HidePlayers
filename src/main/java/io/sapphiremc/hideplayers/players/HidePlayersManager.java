@@ -82,7 +82,7 @@ public class HidePlayersManager {
         players.put(player.getUniqueId(), false);
         savePlayer(player.getUniqueId());
 
-        if (plugin.getConfiguration().getBoolean("item.enabled")) {
+        if (plugin.itemAllowed(player.getWorld())) {
             player.getInventory().setItem(plugin.getConfiguration().getInt("item.slot") - 1, getItem(player));
         }
     }
@@ -95,7 +95,7 @@ public class HidePlayersManager {
         players.put(player.getUniqueId(), true);
         savePlayer(player.getUniqueId());
 
-        if (plugin.getConfiguration().getBoolean("item.enabled")) {
+        if (plugin.itemAllowed(player.getWorld())) {
             player.getInventory().setItem(plugin.getConfiguration().getInt("item.slot") - 1, getItem(player));
         }
     }

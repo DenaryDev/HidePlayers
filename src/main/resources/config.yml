@@ -18,10 +18,16 @@ lang:
 
 # Hide item section
 item:
-  # If set to false, then the player will not be given an item to switch the visibility of players
+  # If set to false, then the player will not be given hide item.
   enabled: true
 
-  # What slot should Hide item be? (Starts at 1 & ends at 9)
+  # The player will not be given hide item in the following worlds:
+  disabled-worlds:
+    - disabled
+    - worlds
+    - here
+
+  # What slot should hide item be? (Starts at 1 & ends at 9)
   slot: 9
 
   # Material of item when all players are visible

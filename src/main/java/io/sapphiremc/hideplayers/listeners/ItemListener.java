@@ -29,7 +29,7 @@ public class ItemListener implements Listener {
     public void onDrop(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
 
-        if (plugin.getConfiguration().getBoolean("item.enabled") && !plugin.getConfiguration().getBoolean("item.settings.droppable")) {
+        if (plugin.itemAllowed(player.getWorld()) && !plugin.getConfiguration().getBoolean("item.settings.droppable")) {
             ItemStack item = event.getItemDrop().getItemStack();
             if (new NBTItem(item).getString("itemId").equals("hide-players-item")) {
                 event.setCancelled(true);
@@ -42,7 +42,7 @@ public class ItemListener implements Listener {
     public void onInventoryMove(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
 
-        if (plugin.getConfiguration().getBoolean("item.enabled") && plugin.getConfiguration().getBoolean("item.settings.restrict-movement")) {
+        if (plugin.itemAllowed(player.getWorld()) && plugin.getConfiguration().getBoolean("item.settings.restrict-movement")) {
             ItemStack item = event.getCurrentItem();
             if (item != null && !item.getType().isAir() && new NBTItem(item).getString("itemId").equals("hide-players-item")) {
                 event.setCancelled(true);
@@ -55,7 +55,7 @@ public class ItemListener implements Listener {
     public void onToggle(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (plugin.getConfiguration().getBoolean("item.enabled") && (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK))) {
+        if (plugin.itemAllowed(player.getWorld()) && (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK))) {
             ItemStack item = event.getItem();
             if (item != null) {
                 NBTItem nbtItem = new NBTItem(item);

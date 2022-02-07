@@ -31,7 +31,7 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         plugin.getHidePlayersManager().loadPlayer(player);
 
-        if (plugin.getConfiguration().getBoolean("item.enabled") && plugin.getConfiguration().getBoolean("item.triggers.join")) {
+        if (plugin.itemAllowed(player.getWorld()) && plugin.getConfiguration().getBoolean("item.triggers.join")) {
             player.getInventory().setItem(plugin.getConfiguration().getInt("item.slot") - 1, plugin.getHidePlayersManager().getItem(player));
         }
     }
@@ -52,7 +52,7 @@ public class PlayerListener implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getPlayer();
 
-        if (plugin.getConfiguration().getBoolean("item.enabled") && !plugin.getConfiguration().getBoolean("item.settings.drop-on-death") && Boolean.FALSE.equals(player.getWorld().getGameRuleValue(GameRule.KEEP_INVENTORY))) {
+        if (plugin.itemAllowed(player.getWorld()) && !plugin.getConfiguration().getBoolean("item.settings.drop-on-death") && Boolean.FALSE.equals(player.getWorld().getGameRuleValue(GameRule.KEEP_INVENTORY))) {
             for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
                 ItemStack item = player.getInventory().getItem(slot);
                 if (item != null && !item.getType().isAir() && new NBTItem(item).getString("itemId").equals("hide-players-item")) {
@@ -67,7 +67,7 @@ public class PlayerListener implements Listener {
     public void onRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
 
-        if (plugin.getConfiguration().getBoolean("item.enabled") && plugin.getConfiguration().getBoolean("item.triggers.respawn")) {
+        if (plugin.itemAllowed(player.getWorld()) && plugin.getConfiguration().getBoolean("item.triggers.respawn")) {
             player.getInventory().setItem(plugin.getConfiguration().getInt("item.slot") - 1, plugin.getHidePlayersManager().getItem(player));
         }
     }
@@ -76,8 +76,15 @@ public class PlayerListener implements Listener {
     public void onWorldChange(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
 
-        if (plugin.getConfiguration().getBoolean("item.enabled") && plugin.getConfiguration().getBoolean("item.triggers.world-switch")) {
+        if (plugin.itemAllowed(player.getWorld()) && plugin.getConfiguration().getBoolean("item.triggers.world-switch")) {
             player.getInventory().setItem(plugin.getConfiguration().getInt("item.slot") - 1, plugin.getHidePlayersManager().getItem(player));
+        }
+
+        if (!plugin.itemAllowed(player.getWorld())) {
+            ItemStack item = player.getInventory().getItem(plugin.getConfiguration().getInt("item.slot") - 1);
+            if (item != null && new NBTItem(item).getString("itemId").equals("hide-players-item")) {
+                player.getInventory().remove(item);
+            }
         }
     }
 }
