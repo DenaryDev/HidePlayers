@@ -41,7 +41,14 @@ public class HidePlayersExpansion extends PlaceholderExpansion {
     @Override
     public String onPlaceholderRequest(Player p, @NotNull String identifier) {
         if (plugin.isLoad() && p != null) {
-            if (identifier.equals("status")) return "" + plugin.getHidePlayersManager().isHidden(p);
+            switch (identifier) {
+                case "status":
+                    return plugin.getHidePlayersManager().isHidden(p) ? "hidden" : "visible";
+                case "ishidden":
+                    return plugin.getHidePlayersManager().isHidden(p) ? "yes" : "no";
+                case "isvisible":
+                    return plugin.getHidePlayersManager().isHidden(p) ? "no": "yes";
+            }
         }
         return null;
     }
