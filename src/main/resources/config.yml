@@ -1,0 +1,54 @@
+# HidePlayers configuration file
+# Generated on ${version}
+
+#=-=-=-=-=-=-=-=-=-=-=-=#
+# DO NOT CHANGE THIS!!! #
+#=-=-=-=-=-=-=-=-=-=-=-=#
+file-version: 1.0
+
+# Debug mode.
+debug: false
+
+# Language settings
+lang:
+  # Default language
+  default: en_us
+  # Use player language if possible?
+  use-player-lang: true
+
+# Hide item section
+item:
+  # If set to false, then the player will not be given an item to switch the visibility of players
+  enabled: true
+
+  # What slot should Hide item be? (Starts at 1 & ends at 9)
+  slot: 9
+
+  # Material of item when all players are visible
+  # Available materials: https://papermc.io/javadocs/paper/1.18/org/bukkit/Material.html
+  # [!] Name and lore of item can be changed in selected language file
+  visible-material: LIME_DYE
+
+  # Material of item when all players are hidden
+  # Available materials: https://papermc.io/javadocs/paper/1.18/org/bukkit/Material.html
+  # [!] Name and lore of item can be changed in selected language file
+  hidden-material: GRAY_DYE
+
+  # Settings for Hide item
+  settings:
+    # Prevent players from moving an item around their inventory,
+    # transferring it to another hand or container
+    restrict-movement: true
+    # Will players be able to drop an item from their inventory?
+    droppable: false
+    # Will the item drop when the player dies?
+    drop-on-death: false
+
+  # Triggers for giving an item to a player
+  triggers:
+    # Try to give item to player every time they join the server
+    join: true
+    # Try to give an item to the player on every respawn
+    respawn: true
+    # Try to give an item to the player when switching between worlds
+    world-switch: false

@@ -1,0 +1,50 @@
+# HidePlayers messages file
+# Generated on ${version}
+# Language: Russian (Russian Federation)
+
+# Errors messages
+error:
+  no-permission: "&cУ вас недостаточно прав, чтобы использовать это!"
+  players-only: "&cЭту команду могут использовать только игроки!"
+
+# Item translations
+item:
+  visible:
+    displayname: "&eСкрыть игроков"
+    lore:
+      - ""
+      - "&7Cтатус: &fИгроки показаны"
+      - ""
+      - "&7ПКМ, чтобы скрыть всех игроков"
+
+  # Players hidden item
+  hidden:
+    displayname: "&eПоказать игроков"
+    lore:
+      - ""
+      - "&7Статус: &fИгроки скрыты"
+      - ""
+      - "&7ПКМ, чтобы показать всех игроков"
+
+# Commands messages
+command:
+  generic:
+    usage: "&cИспользуйте: %usage%"
+  help:
+    usage: "/%label% help для просмотра списка доступных команд."
+    header: |-
+      &bHidePlayers &8| &eДоступные команды:
+      &7&oПараметры в <> обязательны, а в [] не обязательны
+    command: "&8&l* &6%usage% &7- &e%info%"
+    empty: "&c**Кажется, у вас нет доступа к каким-либо командам**"
+  reload:
+    info: "&oПерезагружает конфигурацию плагина."
+    usage: "/%label% reload"
+    success: "&aКонфигурация плагина успешно перезагружена."
+  toggle:
+    info: "&oПереключает видимость игроков"
+    usage: "/%label% toggle"
+    success: "&aИгроки %action%!"
+    action:
+      visible: "&aпоказаны"
+      hidden: "&aскрыты"

@@ -1,0 +1,51 @@
+# HidePlayers messages file
+# Generated on ${version}
+# Language: English (United States)
+
+# Errors messages
+error:
+  no-permission: "&cYou don't have enough permissions to use this!"
+  players-only: "&cOnly players can use this command!"
+
+# Item translations
+item:
+  # Players visible item
+  visible:
+    displayname: "&eHide players"
+    lore:
+      - ""
+      - "&7Status: &fPlayers visible"
+      - ""
+      - "&7Right-Click to hide all players"
+
+  # Players hidden item
+  hidden:
+    displayname: "&eShow players"
+    lore:
+      - ""
+      - "&7Status: &fPlayers hidden"
+      - ""
+      - "&7Right-Click to show all players"
+
+# Commands messages
+command:
+  generic:
+    usage: "&cUse: %usage%"
+  help:
+    usage: "/%label% help to see a list of available commands."
+    header: |-
+      &bHidePlayers &8| &eAvailable commands:
+      &7&oParameters in <> are required, but in [] are optional
+    command: "&8&l* &6%usage% &7- &e%info%"
+    empty: "&c**You don't seem to have access to any commands**"
+  reload:
+    info: "&oReloads the plugin configuration."
+    usage: "/%label% reload"
+    success: "&aPlugin configuration reloaded successfully."
+  toggle:
+    info: "&oToggle players visibility"
+    usage: "/%label% toggle"
+    success: "&7All players are now %action%!"
+    action:
+      visible: "&avisible"
+      hidden: "&chidden"

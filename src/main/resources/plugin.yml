@@ -1,0 +1,34 @@
+name: "HidePlayers"
+version: "${version}"
+main: "io.sapphiremc.hideplayers.HidePlayersPlugin"
+api-version: "1.18"
+softdepend: [ "PlaceholderAPI" ]
+author: "DenaryDev"
+
+commands:
+  visibility:
+    description: "Main plugin command"
+
+permissions:
+  # Super permission
+  sapphirehideplayers.admin:
+    description: "Admin permission to access all plugin features"
+    default: op
+    children:
+      - "sapphirehideitem.command.*"
+
+  # Command permissions
+  sapphirehideplayers.command.*:
+    description: "Allows to use all commands"
+    default: op
+    children:
+      - "sapphirehideitem.command.toggle"
+      - "sapphirehideitem.command.reload"
+  # /visibility toggle
+  sapphirehideplayers.command.toggle:
+    description: "Allows to toggle players visibility"
+    default: true
+  # /visibility reload
+  sapphirehideplayers.command.reload:
+    description: "Allows to reload plugin configurations and cache"
+    default: op
