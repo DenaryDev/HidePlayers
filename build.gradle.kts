@@ -1,8 +1,8 @@
 plugins {
     java
     id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("org.cadixdev.licenser") version "0.6.1"
     id("xyz.jpenilla.run-paper") version "1.0.6"
-
 }
 
 group = "io.sapphiremc"
@@ -26,47 +26,71 @@ dependencies  {
     annotationProcessor("org.projectlombok:lombok:1.18.22")
 }
 
-tasks.processResources {
-    filesMatching(listOf("plugin.yml", "config.yml")) {
-        expand("version" to project.version)
-    }
-}
-
-tasks.runServer {
-    minecraftVersion("1.18.1")
-    runDirectory.set(project.projectDir.resolve("run/"))
-    if (!System.getenv("useCustomCore").isNullOrEmpty()) {
-        serverJar.set(project.projectDir.resolve("run/server.jar"))
-    }
-}
-
-tasks.withType<JavaCompile> {
-    options.encoding = Charsets.UTF_8.name()
-    options.release.set(17)
-}
-tasks.withType<Javadoc> {
-    options.encoding = Charsets.UTF_8.name()
-}
-tasks.withType<ProcessResources> {
-    filteringCharset = Charsets.UTF_8.name()
-}
-
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
-tasks.build {
-    dependsOn(tasks.shadowJar)
+license {
+    include("**/io/sapphiremc/hideplayers/**")
+
+    header(project.file("HEADER"))
+    newLine(false)
 }
 
-tasks.jar {
-    archiveClassifier.set("dev")
-}
+tasks {
+    withType<ProcessResources> {
+        filteringCharset = Charsets.UTF_8.name()
+    }
+    withType<JavaCompile> {
+        options.encoding = Charsets.UTF_8.name()
+        options.release.set(17)
+    }
+    withType<Javadoc> {
+        options.encoding = Charsets.UTF_8.name()
+    }
 
-tasks.shadowJar {
-    archiveClassifier.set("")
-    relocate("de.tr7zw.changeme", "io.sapphiremc.hideitem.shaded")
-    minimize()
+    compileJava {
+        options.encoding = Charsets.UTF_8.name()
+        options.compilerArgs.addAll(
+            listOf(
+                "-parameters",
+                "-nowarn",
+                "-Xlint:-unchecked",
+                "-Xlint:-deprecation",
+                "-Xlint:-processing"
+            )
+        )
+        options.isFork = true
+    }
+
+    processResources {
+        filesMatching(listOf("plugin.yml", "config.yml")) {
+            expand("version" to project.version)
+        }
+    }
+
+    jar {
+        archiveClassifier.set("dev")
+        include("LICENSE")
+    }
+
+    shadowJar {
+        archiveClassifier.set("")
+        relocate("de.tr7zw.changeme", "io.sapphiremc.hideplayers.shaded")
+        minimize()
+    }
+
+    build {
+        dependsOn(shadowJar)
+    }
+
+    runServer {
+        minecraftVersion("1.18.1")
+        runDirectory.set(project.projectDir.resolve("run/"))
+        if (!System.getenv("useCustomCore").isNullOrEmpty()) {
+            serverJar.set(project.projectDir.resolve("run/server.jar"))
+        }
+    }
 }
