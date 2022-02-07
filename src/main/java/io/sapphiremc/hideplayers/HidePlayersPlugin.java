@@ -18,6 +18,7 @@
 package io.sapphiremc.hideplayers;
 
 import de.tr7zw.changeme.nbtapi.NBTItem;
+import de.tr7zw.changeme.nbtapi.utils.MinecraftVersion;
 import io.sapphiremc.hideplayers.command.HidePlayersCommand;
 import io.sapphiremc.hideplayers.config.ConfigManager;
 import io.sapphiremc.hideplayers.lang.LanguageManager;
@@ -80,6 +81,12 @@ public class HidePlayersPlugin extends JavaPlugin {
             command.setExecutor(new HidePlayersCommand(this));
         } else {
             logError("Command 'visibility' not found in plugin.yml!");
+        }
+
+        if (MinecraftVersion.getVersion().equals(MinecraftVersion.UNKNOWN)) {
+            logError("This plugin contains Item-NBT-API, but it's incompatible with this version of minecraft, disabling...");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
         }
 
         onReload();
