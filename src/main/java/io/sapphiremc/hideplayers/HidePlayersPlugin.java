@@ -65,6 +65,11 @@ public class HidePlayersPlugin extends JavaPlugin {
         if (!getDataFolder().exists() && !getDataFolder().mkdirs())
             return;
 
+        // Item-NBT-API settings
+        MinecraftVersion.disableUpdateCheck();
+        MinecraftVersion.disableBStats();
+        MinecraftVersion.replaceLogger(getLogger());
+
         if (getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             this.expansion = new HidePlayersExpansion(this);
         }
