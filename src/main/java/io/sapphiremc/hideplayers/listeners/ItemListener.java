@@ -29,7 +29,7 @@ public class ItemListener implements Listener {
     public void onDrop(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
 
-        if (plugin.itemAllowed(player.getWorld()) && !plugin.getConfiguration().getBoolean("item.settings.droppable")) {
+        if (plugin.itemAllowed(player.getWorld()) && !plugin.getConfiguration().getBoolean("item.settings.droppable", false)) {
             ItemStack item = event.getItemDrop().getItemStack();
             if (new NBTItem(item).getString("itemId").equals("hide-players-item")) {
                 event.setCancelled(true);
@@ -42,7 +42,7 @@ public class ItemListener implements Listener {
     public void onInventoryMove(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
 
-        if (plugin.itemAllowed(player.getWorld()) && plugin.getConfiguration().getBoolean("item.settings.restrict-movement")) {
+        if (plugin.itemAllowed(player.getWorld()) && plugin.getConfiguration().getBoolean("item.settings.restrict-movement", true)) {
             ItemStack item = event.getCurrentItem();
             if (item != null && !item.getType().isAir() && new NBTItem(item).getString("itemId").equals("hide-players-item")) {
                 event.setCancelled(true);
@@ -74,7 +74,7 @@ public class ItemListener implements Listener {
                     event.setUseInteractedBlock(Event.Result.DENY);
 
                     ItemStack finalItem = plugin.getHidePlayersManager().getItem(player);
-                    player.getInventory().setItem(plugin.getConfiguration().getInt("item.slot") - 1, finalItem);
+                    player.getInventory().setItem(plugin.getConfiguration().getInt("item.slot", 9) - 1, finalItem);
                     player.setCooldown(finalItem.getType(), 20);
                 }
             }

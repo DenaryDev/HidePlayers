@@ -94,7 +94,7 @@ public class HidePlayersPlugin extends JavaPlugin {
             expansion.unregister();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            ItemStack item = player.getInventory().getItem(configuration.getInt("item.slot") - 1);
+            ItemStack item = player.getInventory().getItem(configuration.getInt("item.slot", 9) - 1);
             if (item != null && new NBTItem(item).getString("itemId").equals("hide-players-item")) {
                 player.getInventory().remove(item);
             }
@@ -107,7 +107,7 @@ public class HidePlayersPlugin extends JavaPlugin {
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (itemAllowed(player.getWorld())) {
-                player.getInventory().setItem(configuration.getInt("item.slot") - 1, hidePlayersManager.getItem(player));
+                player.getInventory().setItem(configuration.getInt("item.slot", 9) - 1, hidePlayersManager.getItem(player));
             }
         }
 
@@ -126,8 +126,10 @@ public class HidePlayersPlugin extends JavaPlugin {
     }
 
     public boolean itemAllowed(World world) {
-        if (!configuration.getBoolean("item.enable")) return false;
-        else return !configuration.getStringList("item.disabled-worlds").contains(world.getName());
+        if (configuration.getBoolean("item.enable", true)) {
+            return !configuration.getStringList("item.disabled-worlds").contains(world.getName());
+        }
+        return false;
     }
 
     public void log(String s) {
