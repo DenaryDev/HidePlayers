@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "io.sapphiremc"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -17,11 +17,11 @@ repositories {
 }
 
 dependencies  {
-    compileOnly("io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.1")
     compileOnly("org.projectlombok:lombok:1.18.22")
 
-    implementation("de.tr7zw:item-nbt-api:2.9.1")
+    implementation("de.tr7zw:item-nbt-api:2.9.2")
 
     annotationProcessor("org.projectlombok:lombok:1.18.22")
 }

@@ -86,7 +86,6 @@ public class HidePlayersPlugin extends JavaPlugin {
         }
 
         onReload();
-        logDebug("Enabling complete");
     }
 
     public void onReload() {
@@ -124,7 +123,6 @@ public class HidePlayersPlugin extends JavaPlugin {
             expansion.unregister();
         if (hidePlayersManager != null)
             hidePlayersManager.disable();
-        logDebug("Disabling complete");
     }
 
     public boolean itemAllowed(World world) {
