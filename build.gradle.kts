@@ -86,7 +86,7 @@ tasks {
     }
 
     runServer {
-        minecraftVersion("1.18.1")
+        minecraftVersion("1.18.2")
         runDirectory.set(project.projectDir.resolve("run/"))
         if (!System.getenv("useCustomCore").isNullOrEmpty()) {
             serverJar.set(project.projectDir.resolve("run/server.jar"))
