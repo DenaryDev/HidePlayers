@@ -133,18 +133,18 @@ public class HidePlayersPlugin extends JavaPlugin {
     }
 
     public void log(String s) {
-        Bukkit.getLogger().info(() -> "§7[§bHidePlayers §8| §aInfo§7] §f" + s);
+        getSLF4JLogger().info(s);
     }
 
     public void logDebug(String s) {
-        if (configuration.getBoolean("debug", false)) Bukkit.getLogger().info(() -> "§7[§bHidePlayers §8| §fDebug§7] §o" + s);
+        if (configuration.getBoolean("debug", false)) log("DEBUG: " + s);
     }
 
     public void logWarning(String s) {
-        Bukkit.getLogger().warning(() -> "§7[§bHidePlayers §8| §6Warn§7] §e" + s);
+        getSLF4JLogger().warn(s);
     }
 
     public void logError(String s) {
-        Bukkit.getLogger().severe(() -> "§7[§bHidePlayers §8| §cError§7] §6" + s);
+        getSLF4JLogger().error(s);
     }
 }

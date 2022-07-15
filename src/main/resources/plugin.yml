@@ -1,7 +1,7 @@
 name: "HidePlayers"
 version: "${version}"
 main: "io.sapphiremc.hideplayers.HidePlayersPlugin"
-api-version: "1.18"
+api-version: "1.16"
 softdepend: [ "PlaceholderAPI" ]
 author: "DenaryDev"
 

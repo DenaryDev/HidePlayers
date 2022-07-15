@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "io.sapphiremc"
-version = "1.0.1"
+version = "1.1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -17,13 +17,13 @@ repositories {
 }
 
 dependencies  {
-    compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.1")
-    compileOnly("org.projectlombok:lombok:1.18.22")
+    compileOnly("org.projectlombok:lombok:1.18.24")
 
-    implementation("de.tr7zw:item-nbt-api:2.9.2")
+    implementation("de.tr7zw:item-nbt-api:2.10.0")
 
-    annotationProcessor("org.projectlombok:lombok:1.18.22")
+    annotationProcessor("org.projectlombok:lombok:1.18.24")
 }
 
 java {
@@ -86,7 +86,7 @@ tasks {
     }
 
     runServer {
-        minecraftVersion("1.18.2")
+        minecraftVersion("1.19")
         runDirectory.set(project.projectDir.resolve("run/"))
         if (!System.getenv("useCustomCore").isNullOrEmpty()) {
             serverJar.set(project.projectDir.resolve("run/server.jar"))
