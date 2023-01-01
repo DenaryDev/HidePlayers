@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "io.sapphiremc"
-version = "1.1.0-SNAPSHOT"
+version = "1.1.0"
 
 repositories {
     mavenCentral()
@@ -17,11 +17,11 @@ repositories {
 }
 
 dependencies  {
-    compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
-    compileOnly("me.clip:placeholderapi:2.11.1")
+    compileOnly("io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT")
+    compileOnly("me.clip:placeholderapi:2.11.2")
     compileOnly("org.projectlombok:lombok:1.18.24")
 
-    implementation("de.tr7zw:item-nbt-api:2.10.0")
+    implementation("de.tr7zw:item-nbt-api:2.11.1")
 
     annotationProcessor("org.projectlombok:lombok:1.18.24")
 }
@@ -40,19 +40,9 @@ license {
 }
 
 tasks {
-    withType<ProcessResources> {
-        filteringCharset = Charsets.UTF_8.name()
-    }
-    withType<JavaCompile> {
-        options.encoding = Charsets.UTF_8.name()
-        options.release.set(17)
-    }
-    withType<Javadoc> {
-        options.encoding = Charsets.UTF_8.name()
-    }
-
     compileJava {
         options.encoding = Charsets.UTF_8.name()
+        options.release.set(17)
         options.compilerArgs.addAll(
             listOf(
                 "-parameters",
@@ -66,6 +56,7 @@ tasks {
     }
 
     processResources {
+        filteringCharset = Charsets.UTF_8.name()
         filesMatching(listOf("plugin.yml", "config.yml")) {
             expand("version" to project.version)
         }
@@ -86,7 +77,7 @@ tasks {
     }
 
     runServer {
-        minecraftVersion("1.19")
+        minecraftVersion("1.19.3")
         runDirectory.set(project.projectDir.resolve("run/"))
         if (!System.getenv("useCustomCore").isNullOrEmpty()) {
             serverJar.set(project.projectDir.resolve("run/server.jar"))

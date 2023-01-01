@@ -1,8 +1,6 @@
-build/
-run/
 .gradle/
 .idea/
+build/
+run/
 
 *.iml
-*.jar
-!gradle-wrapper-jar
