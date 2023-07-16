@@ -5,7 +5,7 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-package io.sapphiremc.hideplayers.utils;
+package me.rafaelka.hideplayers.utils;
 
 import lombok.experimental.UtilityClass;
 import net.md_5.bungee.api.ChatColor;

@@ -5,10 +5,10 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-package io.sapphiremc.hideplayers.players;
+package me.rafaelka.hideplayers.players;
 
 import de.tr7zw.changeme.nbtapi.NBTItem;
-import io.sapphiremc.hideplayers.HidePlayersPlugin;
+import me.rafaelka.hideplayers.HidePlayersPlugin;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;

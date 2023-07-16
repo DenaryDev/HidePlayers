@@ -1,1 +1,1 @@
-rootProject.name = "SapphireHidePlayers"
+rootProject.name = "HidePlayers"

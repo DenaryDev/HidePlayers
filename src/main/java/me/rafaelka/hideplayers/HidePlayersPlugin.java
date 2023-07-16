@@ -5,17 +5,17 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-package io.sapphiremc.hideplayers;
+package me.rafaelka.hideplayers;
 
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import de.tr7zw.changeme.nbtapi.utils.MinecraftVersion;
-import io.sapphiremc.hideplayers.command.HidePlayersCommand;
-import io.sapphiremc.hideplayers.config.ConfigManager;
-import io.sapphiremc.hideplayers.lang.LanguageManager;
-import io.sapphiremc.hideplayers.listeners.ItemListener;
-import io.sapphiremc.hideplayers.listeners.PlayerListener;
-import io.sapphiremc.hideplayers.placeholders.HidePlayersExpansion;
-import io.sapphiremc.hideplayers.players.HidePlayersManager;
+import me.rafaelka.hideplayers.command.HidePlayersCommand;
+import me.rafaelka.hideplayers.config.ConfigManager;
+import me.rafaelka.hideplayers.lang.LanguageManager;
+import me.rafaelka.hideplayers.listeners.ItemListener;
+import me.rafaelka.hideplayers.listeners.PlayerListener;
+import me.rafaelka.hideplayers.placeholders.HidePlayersExpansion;
+import me.rafaelka.hideplayers.players.HidePlayersManager;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.World;

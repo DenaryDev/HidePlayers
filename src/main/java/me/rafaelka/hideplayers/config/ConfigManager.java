@@ -5,9 +5,9 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-package io.sapphiremc.hideplayers.config;
+package me.rafaelka.hideplayers.config;
 
-import io.sapphiremc.hideplayers.HidePlayersPlugin;
+import me.rafaelka.hideplayers.HidePlayersPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;

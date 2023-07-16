@@ -1,12 +1,11 @@
 plugins {
     java
-    id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("org.cadixdev.licenser") version "0.6.1"
-    id("xyz.jpenilla.run-paper") version "1.0.6"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("xyz.jpenilla.run-paper") version "2.1.0"
 }
 
 group = "io.sapphiremc"
-version = "1.1.0"
+version = "1.2.0"
 
 repositories {
     mavenCentral()
@@ -17,26 +16,19 @@ repositories {
 }
 
 dependencies  {
-    compileOnly("io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT")
-    compileOnly("me.clip:placeholderapi:2.11.2")
-    compileOnly("org.projectlombok:lombok:1.18.24")
+    compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
+    compileOnly("me.clip:placeholderapi:2.11.3")
+    compileOnly("org.projectlombok:lombok:1.18.26")
 
-    implementation("de.tr7zw:item-nbt-api:2.11.1")
+    implementation("de.tr7zw:item-nbt-api:2.11.3")
 
-    annotationProcessor("org.projectlombok:lombok:1.18.24")
+    annotationProcessor("org.projectlombok:lombok:1.18.26")
 }
 
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
-}
-
-license {
-    include("**/io/sapphiremc/hideplayers/**")
-
-    header(project.file("HEADER"))
-    newLine(false)
 }
 
 tasks {
@@ -68,7 +60,7 @@ tasks {
 
     shadowJar {
         archiveClassifier.set("")
-        relocate("de.tr7zw.changeme", "io.sapphiremc.hideplayers.shaded")
+        relocate("de.tr7zw.changeme", "me.rafaelka.hideplayers.shaded")
         minimize()
     }
 
@@ -77,10 +69,6 @@ tasks {
     }
 
     runServer {
-        minecraftVersion("1.19.3")
-        runDirectory.set(project.projectDir.resolve("run/"))
-        if (!System.getenv("useCustomCore").isNullOrEmpty()) {
-            serverJar.set(project.projectDir.resolve("run/server.jar"))
-        }
+        minecraftVersion("1.20.1")
     }
 }

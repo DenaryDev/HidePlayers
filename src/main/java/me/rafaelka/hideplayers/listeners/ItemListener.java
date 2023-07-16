@@ -5,10 +5,10 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-package io.sapphiremc.hideplayers.listeners;
+package me.rafaelka.hideplayers.listeners;
 
 import de.tr7zw.changeme.nbtapi.NBTItem;
-import io.sapphiremc.hideplayers.HidePlayersPlugin;
+import me.rafaelka.hideplayers.HidePlayersPlugin;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;

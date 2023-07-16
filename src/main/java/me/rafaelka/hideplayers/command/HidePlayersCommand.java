@@ -5,9 +5,9 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-package io.sapphiremc.hideplayers.command;
+package me.rafaelka.hideplayers.command;
 
-import io.sapphiremc.hideplayers.HidePlayersPlugin;
+import me.rafaelka.hideplayers.HidePlayersPlugin;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -88,7 +88,7 @@ public class HidePlayersCommand implements CommandExecutor, TabCompleter {
         List<String> helpLines = new ArrayList<>();
         helpLines.add(plugin.getLanguageManager().getTranslation(p, "command.help.header"));
 
-        if (sender.hasPermission("sapphirehideplayers.command.reload")) {
+        if (sender.hasPermission("hideplayers.command.reload")) {
             helpLines.add(plugin.getLanguageManager().getTranslation(p, "command.help.command")
                     .replace("%usage%", plugin.getLanguageManager().getTranslation(p, "command.reload.usage").replace("%label%", label))
                     .replace("%info%", plugin.getLanguageManager().getTranslation(p, "command.reload.info")));
